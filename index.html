@@ -1,0 +1,1140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LG Grocery Limited</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap');
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'DM Sans',Arial,sans-serif;
+background:#f7f6f0;
+color:#183d32;
+overflow-x:hidden;
+}
+
+header{
+background:#103c30;
+padding:20px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:1000;
+box-shadow:0 5px 25px #0002;
+}
+
+.logo{
+font-size:23px;
+font-weight:bold;
+color:#d6b66c;
+}
+
+nav{
+display:flex;
+gap:18px;
+flex-wrap:wrap;
+}
+
+nav button{
+background:none;
+border:none;
+color:white;
+font-size:14px;
+cursor:pointer;
+transition:.3s;
+}
+
+nav button:hover,
+nav button.active{
+color:#d6b66c;
+}
+
+.cart-count{
+color:#d6b66c;
+}
+
+.page{
+display:none;
+min-height:85vh;
+animation:slideIn .55s ease;
+}
+
+.page.active{
+display:block;
+}
+
+@keyframes slideIn{
+from{
+opacity:0;
+transform:translateX(45px);
+}
+to{
+opacity:1;
+transform:translateX(0);
+}
+}
+
+.hero{
+min-height:85vh;
+display:flex;
+align-items:center;
+padding:8%;
+color:white;
+background:
+linear-gradient(90deg,#092e24e8,#092e2470),
+url('https://images.unsplash.com/photo-1542838132-92c53300491e?w=1600')
+center/cover;
+}
+
+.hero h1{
+font-family:'Playfair Display',serif;
+font-size:clamp(42px,6vw,75px);
+margin-bottom:20px;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.8;
+max-width:570px;
+}
+
+.btn{
+display:inline-block;
+background:#d6b66c;
+color:#183d32;
+padding:14px 28px;
+border:none;
+border-radius:30px;
+margin-top:25px;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+.btn:hover{
+transform:translateY(-5px);
+box-shadow:0 12px 25px #0003;
+}
+
+section.content{
+padding:75px 7%;
+}
+
+.title{
+font-family:'Playfair Display',serif;
+font-size:40px;
+text-align:center;
+margin-bottom:35px;
+color:#123d32;
+}
+
+.subtitle{
+text-align:center;
+color:#777;
+margin-top:-20px;
+margin-bottom:35px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:25px;
+}
+
+.card{
+background:white;
+border-radius:18px;
+overflow:hidden;
+box-shadow:0 10px 30px #0001;
+transition:.35s;
+}
+
+.card:hover{
+transform:translateY(-9px);
+box-shadow:0 20px 40px #123d3222;
+}
+
+.card img{
+width:100%;
+height:205px;
+object-fit:cover;
+}
+
+.card-body{
+padding:20px;
+}
+
+.card h3{
+margin-bottom:10px;
+}
+
+.price{
+color:#1c684d;
+font-weight:bold;
+font-size:19px;
+}
+
+.card button{
+background:#123d32;
+color:white;
+padding:11px 20px;
+border:none;
+border-radius:25px;
+margin-top:15px;
+cursor:pointer;
+}
+
+.about-box{
+max-width:900px;
+margin:auto;
+text-align:center;
+line-height:2;
+font-size:17px;
+}
+
+.form-box{
+max-width:700px;
+margin:auto;
+background:white;
+padding:35px;
+border-radius:20px;
+box-shadow:0 10px 35px #0001;
+}
+
+input,select,textarea{
+width:100%;
+padding:14px;
+margin:10px 0 18px;
+border:1px solid #ddd;
+border-radius:10px;
+font-family:inherit;
+}
+
+label{
+font-weight:bold;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:white;
+padding:18px;
+margin:12px 0;
+border-radius:12px;
+gap:12px;
+}
+
+.cart-item button{
+background:#a33b32;
+color:white;
+border:0;
+padding:8px 13px;
+border-radius:8px;
+cursor:pointer;
+}
+
+.total{
+font-size:24px;
+font-weight:bold;
+margin-top:25px;
+}
+
+.info{
+background:#e9eee7;
+padding:25px;
+border-radius:15px;
+line-height:2;
+margin-bottom:20px;
+}
+
+footer{
+background:#0b2c23;
+color:white;
+padding:40px 7%;
+text-align:center;
+line-height:2;
+}
+
+footer h2{
+color:#d6b66c;
+}
+
+footer a{
+color:#d6b66c;
+}
+
+.success{
+display:none;
+background:#e2f4e6;
+color:#176138;
+padding:15px;
+border-radius:10px;
+margin:15px 0;
+}
+
+.product-tools{max-width:1100px;margin:0 auto 14px;display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+.product-tools input,.product-tools select{margin:0;background:#fff;border:1px solid #d9dfd8;border-radius:12px;padding:13px 15px;color:#183d32;min-width:0}
+.product-result-count{max-width:1100px;margin:0 auto 18px;color:#68756d;font-size:14px}
+.product-category{display:inline-block;background:#edf3ed;color:#286047;padding:5px 10px;border-radius:20px;font-size:12px;margin:0 0 10px}
+.product-controls{display:flex;gap:8px;align-items:center;margin-top:14px;flex-wrap:wrap}
+.product-qty{width:68px!important;margin:0!important;padding:10px!important;border:1px solid #d7ded7!important;border-radius:9px!important}
+.product-controls button{margin:0!important}
+.cart-quantity{display:inline-flex;align-items:center;gap:10px;margin-top:10px}
+.cart-quantity button{background:#123d32;color:#fff;border:0;border-radius:7px;padding:6px 11px;cursor:pointer}
+.cart-item .remove-item{background:#a33b32;margin-left:8px}
+.empty-results{grid-column:1/-1;text-align:center;background:#fff;padding:35px;border-radius:15px;color:#68756d}
+@media(max-width:650px){.product-tools{grid-template-columns:1fr}.product-tools input,.product-tools select{width:100%}}
+
+.product-pagination{display:flex;justify-content:center;align-items:center;gap:18px;margin:30px 0 10px;flex-wrap:wrap}
+.product-pagination button{border:0;border-radius:22px;padding:11px 20px;background:#123d32;color:#fff;cursor:pointer}
+.product-pagination button:disabled{opacity:.4;cursor:not-allowed}
+.product-pagination span{font-weight:600}
+@media(max-width:850px){
+
+header{
+flex-direction:column;
+gap:18px;
+}
+
+nav{
+justify-content:center;
+gap:12px;
+}
+
+nav button{
+font-size:12px;
+}
+
+.hero{
+min-height:70vh;
+}
+
+.hero h1{
+font-size:45px;
+}
+
+.cart-item{
+flex-wrap:wrap;
+}
+
+}
+
+@media(max-width:480px){
+
+.logo{
+font-size:19px;
+}
+
+nav{
+gap:10px;
+}
+
+nav button{
+font-size:11px;
+}
+
+section.content{
+padding:55px 5%;
+}
+
+.form-box{
+padding:22px;
+}
+
+}
+
+.auth-nav{border:1px solid #d6b66c!important;padding:9px 15px!important;border-radius:22px!important}
+.auth-nav.primary{background:#d6b66c!important;color:#123d32!important;font-weight:700}
+.account-wrap{max-width:560px;margin:35px auto;background:#fff;padding:32px;border-radius:22px;box-shadow:0 15px 45px #123d3218}
+.auth-tabs{display:flex;gap:10px;margin:20px 0}
+.auth-tabs button{flex:1;padding:12px;border:1px solid #d8dfd8;background:#f7f6f0;border-radius:12px;cursor:pointer;font-weight:700;color:#183d32}
+.auth-tabs button.selected{background:#123d32;color:#fff}
+.auth-panel{display:none}.auth-panel.selected{display:block}
+.auth-message{padding:12px;border-radius:10px;margin:12px 0;display:none;line-height:1.5}
+.auth-message.error{display:block;background:#fff0ed;color:#9a3025}
+.auth-message.ok{display:block;background:#e7f5e9;color:#176138}
+.password-row{display:flex;gap:8px;align-items:center}.password-row input{flex:1}.password-row button{padding:12px;border:0;border-radius:9px;background:#e9eee7;cursor:pointer}
+.account-details{background:#e9eee7;padding:20px;border-radius:14px;line-height:1.9}
+@media(max-width:850px){.account-wrap{margin:20px auto}}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">LG GROCERY LIMITED</div>
+
+<nav>
+<button class="active" onclick="showPage('home',this)">Home</button>
+<button onclick="showPage('about',this)">About</button>
+<button onclick="showPage('products',this)">Products</button>
+<button onclick="showPage('cart',this)">Cart 🛒 <span class="cart-count" id="cartCount">0</span></button>
+<button onclick="showPage('checkout',this)">Checkout</button>
+<button onclick="showPage('contact',this)">Contact</button>
+<button class="auth-nav" id="loginNav" onclick="showPage('account',this);setAuthTab('login')">Log In</button>
+<button class="auth-nav primary" id="signupNav" onclick="showPage('account',this);setAuthTab('signup')">Sign Up</button>
+<button class="auth-nav" id="logoutNav" style="display:none" onclick="logoutUser()">Log Out</button>
+</nav>
+
+</header>
+
+<!-- HOME -->
+
+<div class="page active" id="home">
+
+<div class="hero">
+<div>
+
+<h1>Fresh Choices.<br>Better Living.</h1>
+
+<p>
+Welcome to LG Grocery Limited.
+Discover everyday grocery essentials
+and enjoy a convenient shopping experience.
+</p>
+
+<button class="btn" onclick="showPage('products')">
+Explore Products →
+</button>
+
+</div>
+</div>
+
+<section class="content">
+
+<h2 class="title">Welcome to LG Grocery</h2>
+
+<div class="about-box">
+<p>
+Your everyday grocery shopping destination.
+Explore our product selection and discover
+a simple way to plan your shopping.
+</p>
+</div>
+
+</section>
+
+</div>
+
+<!-- ABOUT -->
+
+<div class="page" id="about">
+
+<section class="content">
+
+<h1 class="title">About Our Company</h1>
+
+<div class="about-box">
+
+<h2>LG GROCERY LIMITED</h2>
+
+<br>
+
+<p>
+Welcome to LG Grocery Limited.
+
+We aim to provide a convenient and welcoming
+online grocery shopping experience.
+Explore our product selection, shopping cart
+and convenient customer support.
+
+</p>
+
+<br>
+
+<p><b>Company Number:</b> 17554256</p>
+
+<p><b>Registered Address:</b></p>
+
+<p>
+25 Claremont Close,<br>
+Westcliff-On-Sea,<br>
+England, SS0 7UA.
+</p>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- PRODUCTS -->
+
+<div class="page" id="products">
+
+<section class="content">
+
+<h1 class="title">Our Products</h1>
+
+<p class="subtitle">Explore our grocery selection</p>
+
+<div class="product-tools">
+  <input id="productSearch" type="search" placeholder="Search groceries..." aria-label="Search groceries">
+  <select id="categoryFilter" aria-label="Filter by category"><option value="all">All categories</option></select>
+  <select id="sortProducts" aria-label="Sort products">
+    <option value="featured">Sort: Featured</option>
+    <option value="name">Name: A–Z</option>
+    <option value="low">Price: Low to high</option>
+    <option value="high">Price: High to low</option>
+  </select>
+</div>
+<p id="productResultCount" class="product-result-count" aria-live="polite"></p>
+<div class="grid" id="productGrid"></div>
+<div id="productPagination" class="product-pagination" aria-label="Product pages"></div>
+
+</section>
+
+</div>
+
+<!-- CART -->
+
+<div class="page" id="cart">
+
+<section class="content">
+
+<h1 class="title">Shopping Cart 🛒</h1>
+
+<div id="cartItems"></div>
+
+<div class="total">
+Total: £<span id="total">0.00</span>
+</div>
+
+<button class="btn" onclick="showPage('checkout')">
+Proceed to Checkout →
+</button>
+
+</section>
+
+</div>
+
+<!-- CHECKOUT -->
+
+<div class="page" id="checkout">
+
+<section class="content">
+
+<h1 class="title">Delivery Checkout</h1>
+
+<div class="form-box">
+
+<div id="checkoutSuccess" class="success"></div>
+
+<form id="checkoutForm">
+
+<label>Full Name</label>
+<input type="text" name="name" required>
+
+<label>Email Address</label>
+<input type="email" name="email" required>
+
+<label>Phone Number</label>
+<input type="tel" name="phone" required>
+
+<label>Delivery Address</label>
+
+<textarea name="address" required></textarea>
+
+<label>Delivery Date</label>
+<input type="date" name="date" required>
+
+<label>Preferred Delivery Time</label>
+
+<select name="time" required>
+<option value="">Select Time</option>
+<option>Morning</option>
+<option>Afternoon</option>
+<option>Evening</option>
+</select>
+
+<button class="btn" type="submit">
+Submit Order Request
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- CONTACT -->
+
+<div class="page" id="contact">
+
+<section class="content">
+
+<h1 class="title">Contact Us</h1>
+
+<div class="form-box">
+
+<div class="info">
+
+<h2>LG GROCERY LIMITED</h2>
+
+<p><b>Email:</b>
+<a href="mailto:gaddamlavanya0608@gmail.com">
+gaddamlavanya0608@gmail.com
+</a>
+</p>
+
+<p><b>Phone:</b>
+<a href="tel:+44 7424451625">+44 7424451625</a>
+</p>
+
+<p><b>Address:</b>
+25 Claremont Close,
+Westcliff-On-Sea,
+England, SS0 7UA
+</p>
+
+<p><b>Company Number:</b> 17554256</p>
+
+</div>
+
+<h2>Send an Enquiry</h2>
+
+<div id="contactSuccess" class="success"></div>
+
+<form id="contactForm">
+
+<label>Your Name</label>
+<input name="name" required>
+
+<label>Email Address</label>
+<input type="email" name="email" required>
+
+<label>Subject</label>
+<input name="subject" required>
+
+<label>Message</label>
+
+<textarea name="message" required></textarea>
+
+<button class="btn" type="submit">
+Send Enquiry
+</button>
+
+</form>
+
+</div>
+
+</section>
+
+</div>
+
+<!-- ACCOUNT / AUTHENTICATION -->
+<div class="page" id="account">
+ <section class="content">
+  <h1 class="title">Your LG Grocery Account</h1>
+  <p class="subtitle">Sign in or create an account to continue shopping.</p>
+  <div class="account-wrap">
+   <div id="authMessage" class="auth-message"></div>
+   <div id="authForms">
+    <div class="auth-tabs">
+     <button id="loginTab" class="selected" type="button" onclick="setAuthTab('login')">Log In</button>
+     <button id="signupTab" type="button" onclick="setAuthTab('signup')">Sign Up</button>
+    </div>
+    <form id="loginForm" class="auth-panel selected">
+     <label>Email Address</label><input type="email" id="loginEmail" autocomplete="email" required>
+     <label>Password</label><div class="password-row"><input type="password" id="loginPassword" autocomplete="current-password" required><button type="button" onclick="togglePassword('loginPassword',this)">Show</button></div>
+     <button class="btn" type="submit">Log In</button>
+     <p style="margin-top:18px"><a href="#" onclick="resetPassword();return false">Forgot password?</a></p>
+    </form>
+    <form id="signupForm" class="auth-panel">
+     <label>Full Name</label><input type="text" id="signupName" autocomplete="name" required>
+     <label>Email Address</label><input type="email" id="signupEmail" autocomplete="email" required>
+     <label>Password (at least 6 characters)</label><div class="password-row"><input type="password" id="signupPassword" minlength="6" autocomplete="new-password" required><button type="button" onclick="togglePassword('signupPassword',this)">Show</button></div>
+     <label>Confirm Password</label><input type="password" id="confirmPassword" minlength="6" autocomplete="new-password" required>
+     <button class="btn" type="submit">Create Account</button>
+    </form>
+   </div>
+   <div id="signedInPanel" style="display:none">
+    <div class="account-details"><h2>Welcome, <span id="accountName">Customer</span>!</h2><p>You are signed in to LG Grocery Limited.</p><p><b>Email:</b> <span id="accountEmail"></span></p></div>
+    <button class="btn" onclick="showPage('products')">Continue Shopping</button>
+    <button class="btn" style="background:#123d32;color:white;margin-left:8px" onclick="logoutUser()">Log Out</button>
+   </div>
+  </div>
+ </section>
+</div>
+
+<footer>
+
+<h2>LG GROCERY LIMITED</h2>
+
+
+
+<p>Company Number: 17554256</p>
+
+
+
+<p>©️ 2026 LG Grocery Limited</p>
+
+</footer>
+
+<script>
+
+let registeredUsers = JSON.parse(localStorage.getItem("lgUsers") || "[]");
+let currentUser = JSON.parse(localStorage.getItem("lgCurrentUser") || "null");
+
+const groceryCatalog = [
+  // Fruits
+  ["Apples","Fruits",2.49],["Bananas","Fruits",1.49],["Oranges","Fruits",2.19],["Strawberries","Fruits",2.99],["Grapes","Fruits",2.75],
+  // Vegetables
+  ["Carrots","Vegetables",1.25],["Potatoes","Vegetables",2.10],["Tomatoes","Vegetables",1.79],["Broccoli","Vegetables",1.85],["Cucumbers","Vegetables",1.20],
+  // Dairy and eggs
+  ["Whole Milk","Dairy & Eggs",1.55],["Oat Milk","Dairy & Eggs",2.20],["Cheddar Cheese","Dairy & Eggs",2.85],["Butter","Dairy & Eggs",2.20],["Free Range Eggs","Dairy & Eggs",2.75],
+  // Bakery
+  ["White Bread","Bakery",1.35],["Sourdough Bread","Bakery",2.80],["Baguette","Bakery",1.40],["Croissants","Bakery",2.50],["Bagels","Bakery",1.80],
+  // Food cupboard
+  ["White Rice","Food Cupboard",3.25],["Basmati Rice","Food Cupboard",4.10],["Pasta","Food Cupboard",1.40],["Oats","Food Cupboard",1.80],["Lentils","Food Cupboard",2.20],
+  // Drinks
+  ["Orange Juice","Drinks",2.30],["Apple Juice","Drinks",2.20],["Sparkling Water","Drinks",0.85],["Tea Bags","Drinks",2.50],["Ground Coffee","Drinks",4.25],
+  // Cooking essentials
+  ["Olive Oil","Cooking Essentials",5.49],["Sunflower Oil","Cooking Essentials",2.60],["Tomato Ketchup","Cooking Essentials",1.70],["Mayonnaise","Cooking Essentials",1.80],["Soy Sauce","Cooking Essentials",1.60],
+  // Snacks
+  ["Crisps","Snacks",1.25],["Chips","Snacks",1.30],["Popcorn","Snacks",1.40],["Chocolate Biscuits","Snacks",1.80],["Mixed Nuts","Snacks",2.90],["Dark Chocolate","Snacks",2.20],
+  // Frozen
+  ["Frozen Peas","Frozen Foods",1.50],["Frozen Sweetcorn","Frozen Foods",1.45],["Frozen Pizza","Frozen Foods",3.75],["Ice Cream","Frozen Foods",3.20],["Frozen Berries","Frozen Foods",3.50],
+  // Household
+  ["Washing-up Liquid","Household",1.35],["Kitchen Roll","Household",2.10],["Toilet Tissue","Household",3.00],["Bin Bags","Household",1.80],["Dishwasher Tablets","Household",4.50],
+  ["Akara Ready Mix - Fay Foods 325g","Food Cupboard",5.89],
+  ["Peak Powdered Milk - 400g","Dairy & Eggs",5.89],
+  ["Palm Oil - Nigerian OMOLUABI 18L","Cooking Essentials",47.99],
+  ["KTC Sunflower Oil 1L","Cooking Essentials",2.98],
+  ["Jafro Chin Chin Regular - 160g","Snacks",1.59],
+  ["Ducros Curry Pack of 12 x 25g","Cooking Essentials",9.69],
+  ["Garri Powder Lebu 3kg","Food Cupboard",9.99]
+];
+
+const groceryPhotoIds = [
+  "photo-1560806887-1e4cd0b6cbd6",
+  "photo-1571771894821-ce9b6c11b08e",
+  "photo-1611080626919-7cf5a9dbab5b",
+  "photo-1464965911861-746a04b4bca6",
+  "photo-1596368708380-145421649561",
+  "photo-1598170845058-32b9d6a5da37",
+  "photo-1518977676601-b53f82aba655",
+  "photo-1592924357228-91a4daadcfea",
+  "photo-1459411621453-7b03169855a4",
+  "photo-1604977042946-1eecc30f269e",
+  "photo-1563636619-e9143da7973b",
+  "photo-1550583724-b2692b85b150",
+  "photo-1618160702438-9b02ab6515c9",
+  "photo-1589985270826-4b7bb135bc9d",
+  "photo-1506976785307-8732e854ad03",
+  "photo-1509440159596-0249088772ff",
+  "photo-1585478259715-876acc5be8eb",
+  "photo-1549931319-a545dcf3bc73",
+  "photo-1555507036-ab1f4038808a",
+  "photo-1586444248902-2f64eddc13df",
+  "photo-1586201375761-83865001e31c",
+  "photo-1536304993881-ff6e90fc0b65",
+  "photo-1551462147-ff29053bfc14",
+  "photo-1586495777744-4413f21062fa",
+  "photo-1515543904379-3d757117d92e",
+  "photo-1613478223719-2ab802602423",
+  "photo-1560806887-1e4cd0b6cbd6",
+  "photo-1551024709-8f23befc6f87",
+  "photo-1576092768241-dec231879fc3",
+  "photo-1559056199-641a0ac8b55e",
+  "photo-1474979266404-7eaacbcd87c5",
+  "photo-1473116763249-2faaef81ccda",
+  "photo-1607623814075-e51df1bdc82f",
+  "photo-1563865436874-9aef32095fad",
+  "photo-1584622650111-993a426fbf0a",
+  "photo-1566478989037-eec170784d0b",
+  "photo-1573080496219-bb080dd4f877",
+  "photo-1578849278619-e73505e9610f",
+  "photo-1558961363-fa8fdf82db35",
+  "photo-1536599018102-9f803c140fc1",
+  "photo-1549007994-cb92caebd54b",
+  "photo-1592417817098-8f3d6ef23a28",
+  "photo-1551754655-cd27e38d2076",
+  "photo-1513104890138-7c749659a591",
+  "photo-1567206563064-6f60f4078b5d",
+  "photo-1488477181946-6428a0291777",
+  "photo-1585421514738-01798e348b17",
+  "photo-1584308666744-24d5c474f2ae",
+  "photo-1584556812952-905ffd0c611a",
+  "photo-1581578731548-c64695cc6952",
+  "photo-1583947581924-a6d5c5c8f6c4",
+  "photo-1586495777744-4413f21062fa",
+  "photo-1563636619-e9143da7973b",
+  "photo-1474979266404-7eaacbcd87c5",
+  "photo-1473116763249-2faaef81ccda",
+  "photo-1566478989037-eec170784d0b",
+  "photo-1596040033229-a9821ebd058d",
+  "photo-1586201375761-83865001e31c"
+];
+
+const productEmoji = name => {
+  const n=name.toLowerCase();
+  if(/apple|pear|peach|plum|mango|kiwi|banana|orange|lemon|lime|grape|berry|cherr|melon|pineapple/.test(n)) return "🍎";
+  if(/milk|cheese|butter|yogurt|cream/.test(n)) return "🥛";
+  if(/egg/.test(n)) return "🥚";
+  if(/bread|bagel|croissant|muffin|baguette/.test(n)) return "🥖";
+  if(/carrot/.test(n)) return "🥕";
+  if(/potato|pea|corn|broccoli|cucumber|tomato/.test(n)) return "🥦";
+  if(/rice|oat|lentil|pasta/.test(n)) return "🍚";
+  if(/juice|water|tea|coffee/.test(n)) return "🥤";
+  if(/oil|sauce|mayonnaise/.test(n)) return "🫙";
+  if(/crisps|popcorn|chocolate|biscuit|nuts/.test(n)) return "🍿";
+  if(/pizza|ice cream|frozen/.test(n)) return "🧊";
+  return "🛒";
+};
+
+function makeProductFallback(emoji,label) {
+  const safeLabel=String(label).replace(/[&<>"']/g, '');
+  const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="700" height="480" viewBox="0 0 700 480"><rect width="700" height="480" fill="#edf2e9"/><text x="350" y="215" text-anchor="middle" font-size="145">${emoji}</text><text x="350" y="330" text-anchor="middle" font-family="Arial,sans-serif" font-size="30" fill="#183d32">${safeLabel}</text></svg>`;
+  return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
+}
+
+const products = groceryCatalog.map((item,index) => ({
+  id:index+1,
+  name:item[0],
+  baseName:item[0],
+  category:item[1],
+  price:Number(item[2].toFixed(2)),
+  image:`https://images.unsplash.com/${groceryPhotoIds[index]}?auto=format&fit=crop&w=700&q=85`,
+  emoji:productEmoji(item[0])
+}));
+
+let productPage = 1;
+const productsPerPage = 30;
+let cart = JSON.parse(localStorage.getItem("lgCart") || "[]").filter(item => Number.isInteger(item.id) && item.id >= 1 && item.id <= groceryCatalog.length);
+
+function saveCart(){
+localStorage.setItem("lgCart",JSON.stringify(cart));
+}
+
+function showPage(id,button){
+
+if(id === "checkout" && !currentUser){
+  id = "account";
+  setTimeout(()=>showAuthMessage("Please log in before checkout.","error"),0);
+  setAuthTab("login");
+}
+
+document.querySelectorAll(".page").forEach(page=>{
+page.classList.remove("active");
+});
+
+document.getElementById(id).classList.add("active");
+
+document.querySelectorAll("nav button").forEach(btn=>{
+btn.classList.remove("active");
+});
+
+if(button){
+button.classList.add("active");
+}
+
+window.scrollTo({top:0,behavior:"smooth"});
+
+if(id==="cart") renderCart();
+
+}
+
+function renderProducts(){
+  const grid=document.getElementById("productGrid");
+  const search=(document.getElementById("productSearch")?.value || "").trim().toLowerCase();
+  const category=document.getElementById("categoryFilter")?.value || "all";
+  const sort=document.getElementById("sortProducts")?.value || "featured";
+  let visible=products.filter(p =>
+    (p.name.toLowerCase().includes(search) || p.category.toLowerCase().includes(search)) &&
+    (category === "all" || p.category === category)
+  );
+  if(sort === "name") visible.sort((a,b)=>a.name.localeCompare(b.name));
+  if(sort === "low") visible.sort((a,b)=>a.price-b.price);
+  if(sort === "high") visible.sort((a,b)=>b.price-a.price);
+  document.getElementById("productResultCount").textContent = `${visible.length} product${visible.length===1?"":"s"} found`;
+  const pageCount=Math.max(1,Math.ceil(visible.length/productsPerPage));
+  productPage=Math.min(productPage,pageCount);
+  const pageItems=visible.slice((productPage-1)*productsPerPage,productPage*productsPerPage);
+  const pagination=document.getElementById("productPagination");
+  pagination.innerHTML=pageCount>1 ? `<button ${productPage===1?"disabled":""} onclick="changeProductPage(${productPage-1})">← Previous</button><span>Page ${productPage} of ${pageCount}</span><button ${productPage===pageCount?"disabled":""} onclick="changeProductPage(${productPage+1})">Next →</button>` : "";
+  if(!visible.length){grid.innerHTML='<div class="empty-results">No groceries found. Try another search or category.</div>';return;}
+  grid.innerHTML=pageItems.map(p=>`
+    <div class="card">
+      <img src="${p.image}" alt="${p.baseName}" loading="lazy" onerror="this.onerror=null;this.src=makeProductFallback('${p.emoji}','${p.baseName}');">
+      <div class="card-body">
+        <span class="product-category">${p.category}</span>
+        <h3>${p.name}</h3>
+        <p class="price">£${p.price.toFixed(2)}</p>
+        <div class="product-controls">
+          <input class="product-qty" id="qty-${p.id}" type="number" min="1" max="99" value="1" aria-label="Quantity for ${p.name}">
+          <button onclick="addToCart(${p.id}, document.getElementById('qty-${p.id}').value)">Add to Cart</button>
+        </div>
+      </div>
+    </div>`).join("");
+}
+
+function changeProductPage(page){ productPage=page; renderProducts(); document.getElementById("products").scrollIntoView({behavior:"smooth",block:"start"}); }
+
+function setupProductTools(){
+  const categories=[...new Set(products.map(p=>p.category))].sort();
+  const select=document.getElementById("categoryFilter");
+  select.innerHTML='<option value="all">All categories</option>'+categories.map(c=>`<option value="${c}">${c}</option>`).join("");
+  document.getElementById("productSearch").addEventListener("input",()=>{productPage=1;renderProducts();});
+  select.addEventListener("change",()=>{productPage=1;renderProducts();});
+  document.getElementById("sortProducts").addEventListener("change",()=>{productPage=1;renderProducts();});
+}
+
+function addToCart(id, quantity=1){
+quantity=Math.max(1,Math.min(99,parseInt(quantity,10)||1));
+let item=cart.find(p=>p.id===id);
+
+if(item){
+item.qty=Math.min(99,item.qty+quantity);
+}else{
+cart.push({id:id,qty:quantity});
+}
+
+saveCart();
+updateCount();
+alert("Product added to cart!");
+}
+
+function updateCount(){
+document.getElementById("cartCount").textContent=
+cart.reduce((sum,item)=>sum+item.qty,0);
+}
+
+function renderCart(){
+const box=document.getElementById("cartItems");
+let total=0;
+
+if(cart.length===0){
+box.innerHTML="<h3>Your cart is empty.</h3>";
+document.getElementById("total").textContent="0.00";
+return;
+}
+
+box.innerHTML=cart.map(item=>{
+let product=products.find(p=>p.id===item.id);
+let price=product.price*item.qty;
+total+=price;
+
+return `
+<div class="cart-item">
+<div>
+<strong>${product.name}</strong>
+<br>
+£${product.price.toFixed(2)} each
+<div class="cart-quantity">
+<button onclick="changeCartQty(${product.id},-1)" aria-label="Decrease ${product.name}">−</button>
+<strong>${item.qty}</strong>
+<button onclick="changeCartQty(${product.id},1)" aria-label="Increase ${product.name}">+</button>
+<button class="remove-item" onclick="removeItem(${product.id})">Remove</button>
+</div>
+</div>
+<strong>£${price.toFixed(2)}</strong>
+</div>
+`;
+}).join("");
+
+document.getElementById("total").textContent=total.toFixed(2);
+}
+
+function changeCartQty(id,change){
+  const item=cart.find(p=>p.id===id);
+  if(!item)return;
+  item.qty+=change;
+  if(item.qty<=0) cart=cart.filter(p=>p.id!==id);
+  saveCart();updateCount();renderCart();
+}
+
+function removeItem(id){
+cart=cart.filter(item=>item.id!==id);
+saveCart();
+updateCount();
+renderCart();
+}
+
+function saveDemoRequest(data,type){
+let requests=JSON.parse(localStorage.getItem("lgRequests")||"[]");
+requests.push({
+type:type,
+details:data,
+reference:"LG"+Date.now(),
+createdAt:new Date().toISOString()
+});
+localStorage.setItem("lgRequests",JSON.stringify(requests));
+}
+
+document.getElementById("checkoutForm").addEventListener("submit",function(e){
+e.preventDefault();
+if(cart.length===0){
+alert("Please add products to your cart first.");
+return;
+}
+let data=Object.fromEntries(new FormData(this).entries());
+data.products=cart;
+saveDemoRequest(data,"Grocery Delivery");
+cart=[];
+saveCart();
+updateCount();
+document.getElementById("checkoutSuccess").style.display="block";
+document.getElementById("checkoutSuccess").textContent=
+"Your order request has been submitted successfully.";
+this.reset();
+});
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+e.preventDefault();
+let data=Object.fromEntries(new FormData(this).entries());
+saveDemoRequest(data,"Contact Enquiry");
+document.getElementById("contactSuccess").style.display="block";
+document.getElementById("contactSuccess").textContent=
+"Your enquiry has been sent successfully.";
+this.reset();
+});
+
+document.addEventListener("keydown",function(e){
+if(e.target.matches("input,textarea,select")) return;
+const pages=["home","about","products","cart","checkout","contact","account"];
+let current=pages.findIndex(id=>
+document.getElementById(id).classList.contains("active")
+);
+if(e.key==="ArrowRight"){
+showPage(pages[(current+1)%pages.length]);
+}
+if(e.key==="ArrowLeft"){
+showPage(pages[(current-1+pages.length)%pages.length]);
+}
+});
+
+// Authentication Functions
+function showAuthMessage(message,type="error"){
+ const box=document.getElementById("authMessage");
+ box.textContent=message; box.className="auth-message "+type;
+}
+
+function clearAuthMessage(){
+ const box=document.getElementById("authMessage");
+ box.textContent="";
+ box.className="auth-message";
+}
+
+function setAuthTab(tab){
+ clearAuthMessage();
+ document.getElementById("loginTab").classList.toggle("selected",tab==="login");
+ document.getElementById("signupTab").classList.toggle("selected",tab==="signup");
+ document.getElementById("loginForm").classList.toggle("selected",tab==="login");
+ document.getElementById("signupForm").classList.toggle("selected",tab==="signup");
+}
+
+function togglePassword(id,button){
+ const input=document.getElementById(id);
+ input.type=input.type==="password"?"text":"password";
+ button.textContent=input.type==="password"?"Show":"Hide";
+}
+
+function updateAuthUI(user){
+ const signed=!!user;
+ document.getElementById("loginNav").style.display=signed?"none":"inline-block";
+ document.getElementById("signupNav").style.display=signed?"none":"inline-block";
+ document.getElementById("logoutNav").style.display=signed?"inline-block":"none";
+ document.getElementById("authForms").style.display=signed?"none":"block";
+ document.getElementById("signedInPanel").style.display=signed?"block":"none";
+ if(user){
+  document.getElementById("accountName").textContent=user.name||"Customer";
+  document.getElementById("accountEmail").textContent=user.email||"";
+ }
+}
+
+// Sign Up Form Handler
+document.getElementById("signupForm").addEventListener("submit", function(e){
+ e.preventDefault();
+ const name=document.getElementById("signupName").value.trim();
+ const email=document.getElementById("signupEmail").value.trim().toLowerCase();
+ const password=document.getElementById("signupPassword").value;
+ const confirm=document.getElementById("confirmPassword").value;
+ 
+ if(password!==confirm){
+   showAuthMessage("The passwords do not match.");
+   return;
+ }
+ 
+ const existingUser = registeredUsers.find(u => u.email === email);
+ if(existingUser){
+   showAuthMessage("That email address is already registered. Please log in.");
+   return;
+ }
+ 
+ const newUser = { name, email, password };
+ registeredUsers.push(newUser);
+ localStorage.setItem("lgUsers", JSON.stringify(registeredUsers));
+ 
+ currentUser = { name: newUser.name, email: newUser.email };
+ localStorage.setItem("lgCurrentUser", JSON.stringify(currentUser));
+ 
+ updateAuthUI(currentUser);
+ showAuthMessage("Your account has been created successfully. You are now logged in.","ok");
+ this.reset();
+});
+
+// Login Form Handler
+document.getElementById("loginForm").addEventListener("submit", function(e){
+ e.preventDefault();
+ const email=document.getElementById("loginEmail").value.trim().toLowerCase();
+ const password=document.getElementById("loginPassword").value;
+ 
+ const user = registeredUsers.find(u => u.email === email && u.password === password);
+ if(!user){
+   showAuthMessage("Invalid email or password. Please try again.");
+   return;
+ }
+ 
+ currentUser = { name: user.name, email: user.email };
+ localStorage.setItem("lgCurrentUser", JSON.stringify(currentUser));
+ 
+ updateAuthUI(currentUser);
+ showAuthMessage("You are now logged in.","ok");
+ this.reset();
+});
+
+// Logout Handler
+function logoutUser(){
+ currentUser = null;
+ localStorage.removeItem("lgCurrentUser");
+ updateAuthUI(null);
+ showPage("home");
+}
+
+// Reset Password Handler
+function resetPassword(){
+ const email=document.getElementById("loginEmail").value.trim();
+ if(!email){
+   showAuthMessage("Please enter your email address first, then click Forgot password.");
+   return;
+ }
+ showAuthMessage("Password reset instructions have been sent to your email.","ok");
+}
+
+// Initial setup on page load
+setupProductTools();
+renderProducts();
+updateCount();
+updateAuthUI(currentUser);
+
+</script>
+
+</body>
+</html>
